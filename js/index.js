@@ -44,6 +44,16 @@ window.addEventListener('DOMContentLoaded', () => {
       o: ['Sydney', 'Canberra', 'Melbourne', 'Perth'],
       a: 1,
     },
+    {
+      q: 'What is the name of the currency used in Japan?',
+      o: ['Taka', 'Dinar', 'Ngultrum', 'Yen'],
+      a: 3, // array index 3 - so Yen is the correct answer here
+    },
+    {
+      q: 'In which country is the Leaning Tower of Pisa located?',
+      o: ['England', 'France', 'Italy', 'Spain'],
+      a: 2, // array index 2 - so Italy is the correct answer here
+    },
   ];
 
   // function to Display the quiz questions and answers from the object
@@ -67,7 +77,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const calculateScore = () => {
     let score = 0;
     quizArray.map((quizItem, index) => {
-      for (let i = 0; i < 4; i++) {
+      for (let i = 0; i < 6; i++) {
         //highlight the li if it is the correct answer
         let li = `li_${index}_${i}`;
         let r = `radio_${index}_${i}`;
@@ -76,15 +86,31 @@ window.addEventListener('DOMContentLoaded', () => {
 
         if (quizItem.a == i) {
           //change background color of li element here
+          
         }
 
         if (radioElement.checked) {
           // code for task 1 goes here
+          score++;
+           
         }
       }
     });
+       return score;
   };
 
   // call the displayQuiz function
   displayQuiz();
+  
 });
+  
+
+function reload(){
+  btnReset.onclick = window.location.reload();
+}
+function submit() {
+btnSubmit.onclick = function() {
+  var result = calculateScore();
+  results.innerHTML = result + ' out of ' + quizArray.length;
+};
+};
